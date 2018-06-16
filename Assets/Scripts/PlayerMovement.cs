@@ -5,12 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
     private Vector3 mousePosition;
     public float moveSpeed = 0.1f;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
+    public CircleCollider2D fishbowl;
 
     // Update is called once per frame
     void Update()
@@ -19,7 +14,9 @@ public class PlayerMovement : MonoBehaviour {
         
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-            transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+            Vector2 position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
+            transform.position = fishbowl.bounds.ClosestPoint(position); 
+           
         
 
     }
