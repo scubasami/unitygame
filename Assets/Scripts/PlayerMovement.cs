@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 mousePosition;
     public float moveSpeed = 0.1f;
     public CircleCollider2D fishbowl;
+    
+    
+
+    
 
     // Update is called once per frame
     void Update()
@@ -20,7 +24,17 @@ public class PlayerMovement : MonoBehaviour {
         
 
     }
-
+   
+        void OnCollisionEnter(Collision col)
+        {
+            if (col.gameObject.name == "foodUp")
+            {
+                gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.1f);
+                
+            }
+             Debug.Log("food colliding");
+        }
+    
 
 
 }

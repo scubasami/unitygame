@@ -5,19 +5,29 @@ using UnityEngine;
 public class fooddropping : MonoBehaviour {
     public GameObject projectile;
     public GameObject projectile2;
-    
+    public CircleCollider2D fishbowl;
 
     private void FixedUpdate () {
         if (Input.GetButton("feed"))
             {
             GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity) as GameObject;
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+            Rigidbody2D gameObjectsRigidBody = bullet.GetComponent<Rigidbody2D>();
+            gameObjectsRigidBody.mass = 5; 
+
+            gameObjectsRigidBody.AddForce(transform.forward * 10);
         }
         if (Input.GetButton("shrink"))
         {
             GameObject bullet = Instantiate(projectile2, transform.position, Quaternion.identity) as GameObject;
-            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * 10);
+            Rigidbody2D gameObjectsRigidBody = bullet.GetComponent<Rigidbody2D>();
+            gameObjectsRigidBody.mass = 5;
+
+            gameObjectsRigidBody.AddForce(transform.forward * 10);
         }
     }
-  
+    private void LateUpdate()
+    {
+        transform.position = fishbowl.bounds.ClosestPoint(transform.position);
+    }
+
 }
