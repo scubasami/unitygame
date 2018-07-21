@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 mousePosition;
     public float moveSpeed = 0.1f;
     public CircleCollider2D fishbowl;
-    
+    public BoxCollider2D shape; 
     
 
     
@@ -19,21 +19,25 @@ public class PlayerMovement : MonoBehaviour {
             mousePosition = Input.mousePosition;
             mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
             Vector2 position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
-            transform.position = fishbowl.bounds.ClosestPoint(position); 
-           
-        
+            transform.position = fishbowl.bounds.ClosestPoint(position);
 
-    }
-   
-        void OnCollisionEnter(Collision col)
+       /* if (shape.isTrigger)
         {
-            if (col.gameObject.name == "foodUp")
-            {
-                gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.1f);
-                
-            }
-             Debug.Log("food colliding");
+            Debug.Log("This Collider2D can be triggered");
         }
+        else if (!shape.isTrigger)
+        {
+            Debug.Log("This Collider2D cannot be triggered");
+        }
+
+    */
+    }
+      
+
+
+  
+  
+   
     
 
 
