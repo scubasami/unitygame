@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Feeding : MonoBehaviour
 {
-    public GameObject foodup;
-    public GameObject shape; 
+    public GameObject foodUp;
+    public GameObject foodDown;
+    public GameObject fish;
     private void Update()
     {
        
@@ -29,12 +30,20 @@ public class Feeding : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
        
-        if (col.gameObject == foodup)
+        if (col.gameObject.tag == "foodUp")
         {
-            gameObject.transform.localScale += new Vector3(0.01f, 0.01f, 0.1f);
+            fish.transform.localScale += new Vector3(0.1f, 0.1f, 0f);
+            Debug.Log(fish.transform.localScale);
+            Destroy(col.gameObject);
 
         }
-        Debug.Log("food colliding");
+        if (col.gameObject.tag == "foodDown")
+        {
+            fish.transform.localScale += new Vector3(-0.1f, -0.1f, 0f);
+            Debug.Log("fooddown");
+            Destroy(col.gameObject);
+
+        }
     }
 
 
